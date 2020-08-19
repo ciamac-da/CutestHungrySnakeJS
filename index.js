@@ -133,8 +133,9 @@ function draw(){
     // game over
     // this is a function which define game over logic
     // this means if you hit the walls or snake's tail you're K.O ! :)
-    if(snakeX < box || snakeX > 17 * box || snakeY < 3*box || snakeY > 17*box || collision(newHead,snake)){
+    if(snakeX <= -1*box  || snakeX > 18 * box || snakeY < 2*box || snakeY > 18*box || collision(newHead,snake)){
         clearInterval(game);
+       alert("The Game is Over dude :( Click OK and try to reload the browser if you wanna play again!")
         dead.play();
     }
     
@@ -145,6 +146,5 @@ function draw(){
     ctx.fillText(score,2*box,1.6*box);
 }
 
-// call draw function every 100 ms
-
-let game = setInterval(draw,100);
+// call draw function every 120 ms
+let game = setInterval(draw,120);
