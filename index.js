@@ -135,8 +135,8 @@ function draw(){
     // this means if you hit the walls or snake's tail you're K.O ! :)
     if(snakeX <= -1*box  || snakeX > 18 * box || snakeY < 2*box || snakeY > 18*box || collision(newHead,snake)){
         clearInterval(game);
-       alert("The Game is over buddy :( Click OK and try to reload the browser if you wanna play again!")
         dead.play();
+        alert("The Game is over buddy :( Click OK and try to reload the browser if you wanna play again!")
     }
     
     snake.unshift(newHead);
