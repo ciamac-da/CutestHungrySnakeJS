@@ -1,14 +1,17 @@
+// Import and Save canvas!!!
 const cvs = document.getElementById("canvas");
+// This is how to give canvas a method called getContext!
 const ctx = cvs.getContext("2d");
 
 // create the unit
 // every unit has 32 pixels!
-const box = 32;
+const box = 32; 
 
 // load images
+// To import play ground!
 const ground = new Image();
 ground.src = "img/ground.png";
-
+// To import my delicious apple!:)
 const foodImg = new Image();
 foodImg.src = "img/food.png";
 
@@ -19,7 +22,7 @@ let up = new Audio();
 let right = new Audio();
 let left = new Audio();
 let down = new Audio();
-
+// To combine loaded audios to new Audio() method!
 dead.src = "audio/dead.mp3";
 eat.src = "audio/eat.mp3";
 up.src = "audio/up.mp3";
@@ -28,7 +31,6 @@ left.src = "audio/left.mp3";
 down.src = "audio/down.mp3";
 
 // create the snake
-
 let snake = [];
 
 snake[0] = {
@@ -49,7 +51,7 @@ let score = 0;
 
 //control the snake
 let d;
-
+// Here I make an event called keydown to get the premission to use keyboard buttons!
 document.addEventListener("keydown",direction);
 // this is how to define keyboard keys 
 // which is like this => 
@@ -74,7 +76,7 @@ function direction(event){
     }
 }
 
-// cheack collision function
+// check collision function
 function collision(head,array){
     for(let i = 0; i < array.length; i++){
         if(head.x == array[i].x && head.y == array[i].y){
@@ -109,7 +111,7 @@ function draw(){
     if( d == "RIGHT") snakeX += box;
     if( d == "DOWN") snakeY += box;
     
-    // if the snake eats the food
+    // if the snake eats the food it get bigger and bigger and bigger and bigger
     if(snakeX == food.x && snakeY == food.y){
         score++;
         eat.play();
@@ -124,7 +126,6 @@ function draw(){
     }
     
     // add new Head
-    
     let newHead = {
         x : snakeX,
         y : snakeY
@@ -136,9 +137,10 @@ function draw(){
     if(snakeX <= -1*box  || snakeX > 18 * box || snakeY < 2*box || snakeY > 18*box || collision(newHead,snake)){
         clearInterval(game);
         dead.play();
+        // game over alert!
         alert("The Game is over buddy :( Click OK and try to reload the browser if you wanna play again!")
     }
-    
+    // Restart(make snake great again) :D
     snake.unshift(newHead);
     
     ctx.fillStyle = "white";
@@ -146,5 +148,5 @@ function draw(){
     ctx.fillText(score,2*box,1.6*box);
 }
 
-// call draw function every 120 ms
+// Call draw function which moves the snake every 120 ms!
 let game = setInterval(draw,120);
